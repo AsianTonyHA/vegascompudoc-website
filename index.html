@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vegas CompuDoc — Computer & Laptop Repair, Las Vegas</title>
+<meta name="description" content="30 years fixing computers in Las Vegas. Laptop repair, virus removal, data recovery, custom gaming builds. Call or text 702-871-1881.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F8F9;
+    --panel:#FFFFFF;
+    --ink:#0F2233;
+    --ink-soft:#4A5C68;
+    --primary:#1D4E89;
+    --primary-dark:#153A66;
+    --accent:#E08A2C;
+    --line:#D7DEE2;
+    --trace:#C7D3D9;
+    --radius:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .section{padding:88px 0;}
+  .section-tight{padding:56px 0;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--primary);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--primary);
+    display:inline-block;
+  }
+
+  /* Circuit trace divider — signature motif */
+  .trace{
+    height:34px;
+    width:100%;
+    position:relative;
+  }
+  .trace svg{width:100%;height:100%;display:block;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,248,249,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:19px;
+  }
+  .logo .dot{
+    width:9px;height:9px;border-radius:2px;
+    background:var(--accent);
+  }
+  .logo span.sub{
+    font-family:'JetBrains Mono',monospace;
+    font-weight:500;
+    font-size:11px;
+    color:var(--ink-soft);
+    letter-spacing:0.04em;
+    display:block;
+    margin-top:-2px;
+  }
+  .navlinks{display:flex;gap:32px;align-items:center;}
+  .navlinks a{
+    font-size:14.5px;font-weight:500;color:var(--ink-soft);
+    transition:color .15s;
+  }
+  .navlinks a:hover{color:var(--primary);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;
+    border-radius:9px;
+    font-weight:600;font-size:14.5px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 18px -8px rgba(29,78,137,.55);}
+  .btn-primary:hover{background:var(--primary-dark);}
+  .btn-accent{background:var(--accent);color:#1a1204;}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-nav{padding:9px 16px;font-size:13.5px;}
+
+  /* HERO */
+  .hero{
+    padding:64px 0 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:48px;
+    line-height:1.08;
+    font-weight:700;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--primary);
+  }
+  .hero p.lede{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin-top:18px;
+    line-height:1.6;
+  }
+  .hero-ctas{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+  .hero-stats{
+    display:flex;gap:0;
+    margin-top:42px;
+    border-top:1px solid var(--line);
+    padding-top:22px;
+  }
+  .stat{padding-right:32px;margin-right:32px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--primary);}
+  .stat .lab{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  .hero-photo{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -25px rgba(15,34,51,0.35);
+    aspect-ratio:4/5;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo .tag{
+    position:absolute;bottom:16px;left:16px;
+    background:rgba(15,34,51,0.85);
+    color:#fff;
+    padding:8px 14px;
+    border-radius:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+  }
+
+  /* SERVICES */
+  .services-head{max-width:560px;margin-bottom:44px;}
+  .services-head h2{font-size:32px;}
+  .cat-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;color:var(--primary);
+    letter-spacing:0.05em;text-transform:uppercase;
+    margin:36px 0 14px;
+  }
+  .cat-label:first-of-type{margin-top:0;}
+  .svc-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .svc-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    transition:border-color .15s, transform .15s;
+  }
+  .svc-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+  .svc-card h3{font-size:15.5px;font-weight:600;margin-bottom:6px;}
+  .svc-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0;}
+
+  /* CUSTOM BUILDS SPOTLIGHT */
+  .builds{
+    background:var(--ink);
+    color:#EDF2F5;
+    border-radius:24px;
+    overflow:hidden;
+  }
+  .builds-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:stretch;
+  }
+  .builds-photo{position:relative;min-height:420px;}
+  .builds-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .builds-copy{padding:52px 48px;display:flex;flex-direction:column;justify-content:center;}
+  .builds .eyebrow{color:var(--accent);}
+  .builds .eyebrow::before{background:var(--accent);}
+  .builds h2{color:#fff;font-size:30px;line-height:1.15;margin-bottom:16px;}
+  .builds p{color:#B9C6CE;font-size:15px;line-height:1.7;margin-bottom:14px;}
+  .builds-points{margin-top:18px;display:flex;flex-direction:column;gap:12px;}
+  .builds-point{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#DCE5EA;}
+  .builds-point .mk{
+    width:6px;height:6px;border-radius:50%;background:var(--accent);
+    margin-top:7px;flex-shrink:0;
+  }
+
+  /* WHY */
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:40px;
+  }
+  .why-card{padding:6px 0;}
+  .why-card .num{font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:14px;margin-bottom:10px;}
+  .why-card h3{font-size:17px;margin-bottom:8px;}
+  .why-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
+
+  /* LOCATION / CONTACT */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:0;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .contact-info{padding:44px;}
+  .contact-info h2{font-size:26px;margin-bottom:8px;}
+  .contact-info p.sub{color:var(--ink-soft);font-size:14.5px;margin-bottom:28px;}
+  .info-row{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .info-row:first-of-type{border-top:none;}
+  .info-row .ic{
+    width:34px;height:34px;border-radius:8px;
+    background:#EAF1F8;color:var(--primary);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .info-row .lab{font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;font-family:'JetBrains Mono',monospace;}
+  .info-row .val{font-size:15px;font-weight:500;margin-top:2px;}
+  .info-row a.val{color:var(--primary);}
+  .contact-ctas{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;}
+  .map-embed{min-height:100%;}
+  .map-embed iframe{width:100%;height:100%;min-height:420px;border:0;display:block;}
+
+  footer{
+    padding:36px 0 44px;
+    border-top:1px solid var(--line);
+  }
+  .foot-grid{
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;
+  }
+  .foot-grid .fine{font-size:13px;color:var(--ink-soft);}
+  .foot-links{display:flex;gap:22px;}
+  .foot-links a{font-size:13.5px;color:var(--ink-soft);}
+  .foot-links a:hover{color:var(--primary);}
+
+  /* mobile */
+  @media (max-width:860px){
+    .navlinks{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:34px;}
+    .hero-stats{flex-wrap:wrap;gap:18px;}
+    .stat{padding-right:0;margin-right:0;border-right:none;min-width:40%;}
+    .svc-grid{grid-template-columns:1fr 1fr;}
+    .builds-grid{grid-template-columns:1fr;}
+    .builds-photo{min-height:260px;}
+    .builds-copy{padding:36px 26px;}
+    .why-grid{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .map-embed iframe{min-height:280px;}
+    .section{padding:56px 0;}
+  }
+  @media (max-width:520px){
+    .svc-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:29px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .btn:hover, .svc-card:hover{transform:none;}
+  }
+
+  :focus-visible{outline:2px solid var(--primary);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="logo">
+      <span class="dot"></span>
+      <span>Vegas CompuDoc<span class="sub">EST. 1995 · LAS VEGAS, NV</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#services">Services</a>
+      <a href="#builds">Custom Builds</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Location</a>
+    </div>
+    <a class="btn btn-primary btn-nav" href="tel:+17028711881">Call 702-871-1881</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Las Vegas Computer Repair</div>
+        <h1>The computer doctor Las Vegas has trusted for <em>30 years.</em></h1>
+        <p class="lede">Laptops, desktops, and custom gaming rigs — diagnosed straight, fixed right, and often same-day. No jargon, no upsells, just honest work from technicians who've been doing this since before "the cloud" meant computers.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="tel:+17028711881">📞 Call Now — (702) 871-1881</a>
+          <a class="btn btn-ghost" href="sms:+17028711881">💬 Text Us</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="num">30</div><div class="lab">Years in business</div></div>
+          <div class="stat"><div class="num">Same-Day</div><div class="lab">Appointments often available</div></div>
+          <div class="stat"><div class="num">All Brands</div><div class="lab">HP · Dell · Asus · Apple &amp; more</div></div>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/custom-build.jpg" alt="Custom gaming PC build with RGB lighting, assembled by Vegas CompuDoc">
+        <div class="tag mono">// custom build, in progress</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trace"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0 17 H400 V6 H700 V28 H1200" stroke="#C7D3D9" stroke-width="1.5" fill="none"/><circle cx="400" cy="17" r="3" fill="#C7D3D9"/><circle cx="700" cy="6" r="3" fill="#C7D3D9"/><circle cx="700" cy="28" r="3" fill="#C7D3D9"/></svg></div>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="services-head">
+        <div class="eyebrow">What We Fix</div>
+        <h2>Fast, affordable repair for PCs, laptops, and networks.</h2>
+      </div>
+
+      <div class="cat-label">Repair &amp; Hardware</div>
+      <div class="svc-grid">
+        <div class="svc-card"><h3>Laptop Repair</h3><p>Hardware and software issues, diagnosed and fixed — most brands, most models.</p></div>
+        <div class="svc-card"><h3>Virus &amp; Malware Removal</h3><p>Clean out infections and lock things down with proper security software.</p></div>
+        <div class="svc-card"><h3>Data Recovery &amp; Backup</h3><p>Recover files you thought were gone, then set up automated backups so it doesn't happen again.</p></div>
+        <div class="svc-card"><h3>Screen Replacement</h3><p>Cracked or dead laptop screen swapped out and tested before you leave.</p></div>
+        <div class="svc-card"><h3>Battery &amp; Charging Port Repair</h3><p>Fix charging issues and replace worn-out batteries.</p></div>
+        <div class="svc-card"><h3>Keyboard &amp; Touchpad Repair</h3><p>Replace faulty keys or a trackpad that's stopped cooperating.</p></div>
+      </div>
+
+      <div class="cat-label">Performance &amp; Upgrades</div>
+      <div class="svc-grid">
+        <div class="svc-card"><h3>Slow Computer Optimization</h3><p>Software tweaks and hardware upgrades to make an old machine feel new again.</p></div>
+        <div class="svc-card"><h3>SSD &amp; RAM Upgrades</h3><p>Faster drives, more memory — often the cheapest way to add years of life.</p></div>
+        <div class="svc-card"><h3>Custom Gaming Builds</h3><p>High-performance gaming and workstation PCs, built and tuned from scratch.</p></div>
+      </div>
+
+      <div class="cat-label">Networking</div>
+      <div class="svc-grid">
+        <div class="svc-card"><h3>Wi-Fi &amp; Network Troubleshooting</h3><p>Track down connection drops and slow speeds, then fix the cause.</p></div>
+        <div class="svc-card"><h3>Router &amp; Modem Setup</h3><p>Install and secure your home or office network the right way.</p></div>
+        <div class="svc-card"><h3>Security Cameras</h3><p>Installation and setup for home and business surveillance systems.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="builds" style="padding-top:0;">
+    <div class="wrap">
+      <div class="builds">
+        <div class="builds-grid">
+          <div class="builds-photo">
+            <img src="images/custom-build.jpg" alt="Close-up of a custom-built gaming PC with RGB lighting and cable management by Vegas CompuDoc">
+          </div>
+          <div class="builds-copy">
+            <div class="eyebrow">Custom Builds</div>
+            <h2>We don't just repair computers — we build them.</h2>
+            <p>Every custom rig that comes out of our shop gets the same care whether it's a budget build or a top-of-the-line workstation: clean cable routing, proper airflow, and parts picked to actually match what you'll use the machine for.</p>
+            <p>That's 30 years of habit talking. We've seen what cut corners cost a machine down the line, so we don't cut them.</p>
+            <div class="builds-points">
+              <div class="builds-point"><span class="mk"></span>Parts chosen for your workload — gaming, editing, or everyday use</div>
+              <div class="builds-point"><span class="mk"></span>Careful cable management and thermal setup, not just parts thrown in a case</div>
+              <div class="builds-point"><span class="mk"></span>Every build tested and burned in before it goes home with you</div>
+            </div>
+            <div class="hero-ctas" style="margin-top:28px;">
+              <a class="btn btn-accent" href="tel:+17028711881">Ask About a Custom Build</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="wrap">
+      <div class="services-head">
+        <div class="eyebrow">Why Vegas CompuDoc</div>
+        <h2>Three decades of doing right by the machine in front of us.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="num mono">01</div>
+          <h3>30 years of experience</h3>
+          <p>The oldest computer repair shop in Las Vegas — we've fixed just about everything twice.</p>
+        </div>
+        <div class="why-card">
+          <div class="num mono">02</div>
+          <h3>Straight answers, fair pricing</h3>
+          <p>You'll know what's wrong and what it costs before we touch anything.</p>
+        </div>
+        <div class="why-card">
+          <div class="num mono">03</div>
+          <h3>Often same-day service</h3>
+          <p>By appointment, and many times we can see you the same day you call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="eyebrow">Visit or Call</div>
+          <h2>Come by the shop.</h2>
+          <p class="sub">By appointment — many times we can see you the same day.</p>
+
+          <div class="info-row">
+            <div class="ic">📍</div>
+            <div><div class="lab">Address</div><div class="val">708 S. Jones Blvd, Las Vegas, NV 89107</div></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">📞</div>
+            <div><div class="lab">Phone</div><a class="val" href="tel:+17028711881">(702) 871-1881</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">💬</div>
+            <div><div class="lab">Text</div><a class="val" href="sms:+17028711881">Tap to text this number</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic">🕒</div>
+            <div><div class="lab">Hours</div><div class="val">By appointment</div></div>
+          </div>
+
+          <div class="contact-ctas">
+            <a class="btn btn-primary" href="tel:+17028711881">Call Now</a>
+            <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&destination=708+S+Jones+Blvd+Las+Vegas+NV+89107" target="_blank" rel="noopener">Get Directions</a>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2575.007421866939!2d-115.224693!3d36.161926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c0068df5f7d7%3A0x5a0b2ea49b918bf1!2sCompuDoc!5e0!3m2!1sen!2sus!4v1710269279372"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Vegas CompuDoc location map">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="fine">© <span id="year"></span> Vegas CompuDoc. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="tel:+17028711881">(702) 871-1881</a>
+      <a href="https://www.facebook.com/Vegascompudoc/" target="_blank" rel="noopener">Facebook</a>
+      <a href="#top">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
