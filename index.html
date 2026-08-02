@@ -300,6 +300,30 @@
   .why-card h3{font-size:17px;margin-bottom:8px;}
   .why-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
 
+  /* GUARANTEE */
+  .guarantee-band{
+    background:var(--ink);
+    color:#fff;
+    padding:20px 0;
+    text-align:center;
+  }
+  .guarantee-band .wrap{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    flex-wrap:wrap;
+  }
+  .guarantee-band .headline{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:19px;
+  }
+  .guarantee-band .headline b{color:var(--accent);}
+  .guarantee-band .sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#B9C6CE;
+    letter-spacing:0.03em;
+  }
+
   /* REVIEWS */
   .review-stats{
     display:flex;gap:0;
@@ -388,6 +412,8 @@
     .hero h1{font-size:34px;}
     .hero-stats{flex-wrap:wrap;gap:18px;}
     .stat{padding-right:0;margin-right:0;border-right:none;min-width:40%;}
+    .guarantee-band .wrap{flex-direction:column;gap:6px;}
+    .guarantee-band .headline{font-size:16px;}
     .ticket-row{grid-template-columns:1fr;gap:4px;}
     .builds-grid{grid-template-columns:1fr;}
     .builds-photo{min-height:340px;}
@@ -460,6 +486,13 @@
   </section>
 
   <div class="trace"><svg viewBox="0 0 1200 34" preserveAspectRatio="none"><path d="M0 17 H400 V6 H700 V28 H1200" stroke="#C7D3D9" stroke-width="1.5" fill="none"/><circle cx="400" cy="17" r="3" fill="#C7D3D9"/><circle cx="700" cy="6" r="3" fill="#C7D3D9"/><circle cx="700" cy="28" r="3" fill="#C7D3D9"/></svg></div>
+
+  <div class="guarantee-band">
+    <div class="wrap">
+      <span class="headline">We fix it, or it's <b>free.</b></span>
+      <span class="sub">NO FIX, NO CHARGE. EVERY REPAIR.</span>
+    </div>
+  </div>
 
   <section class="section" id="services">
     <div class="wrap">
