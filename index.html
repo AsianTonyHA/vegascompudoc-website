@@ -179,6 +179,7 @@
     z-index:1;
   }
   .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;}
+  .hero-photo img.fit-contain{object-fit:contain;background:#fff;object-position:center;}
   .hero-photo .tag{
     position:absolute;bottom:0;left:0;
     background:var(--ink);
@@ -232,6 +233,8 @@
     gap:2px;
   }
   .builds-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .builds-photo .cell.fit-contain{background:#fff;}
+  .builds-photo .cell.fit-contain img{object-fit:contain;}
   .builds-photo .cell{position:relative;overflow:hidden;}
   .builds-photo .cell .tag{
     position:absolute;bottom:0;left:0;
@@ -254,6 +257,37 @@
     margin-top:7px;flex-shrink:0;
   }
 
+  .gallery-strip{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-top:14px;
+  }
+  .gallery-card{
+    background:var(--panel);
+    border:1.5px solid var(--ink);
+    padding:12px;
+  }
+  .gallery-card .frame{
+    aspect-ratio:1/1;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    margin-bottom:10px;
+  }
+  .gallery-card .frame img{width:100%;height:100%;object-fit:contain;}
+  .gallery-card .cap{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1px solid var(--line);
+    padding-top:8px;
+  }
+  .gallery-card .cap .name{font-size:13px;font-weight:600;font-family:'Space Grotesk',sans-serif;}
+  .gallery-card .cap .status{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9.5px;font-weight:700;
+    color:var(--accent);
+    text-transform:uppercase;
+  }
+
   /* WHY */
   .why-grid{
     display:grid;
@@ -265,6 +299,37 @@
   .why-card .num{font-family:'JetBrains Mono',monospace;color:var(--primary);font-size:14px;margin-bottom:10px;}
   .why-card h3{font-size:17px;margin-bottom:8px;}
   .why-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
+
+  /* REVIEWS */
+  .review-stats{
+    display:flex;gap:0;
+    margin-bottom:36px;
+    border-top:1.5px solid var(--ink);
+    border-bottom:1.5px solid var(--ink);
+  }
+  .review-stat{
+    flex:1;
+    padding:22px 24px;
+    border-right:1px solid var(--line);
+  }
+  .review-stat:last-child{border-right:none;}
+  .review-stat .platform{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.05em;}
+  .review-stat .score{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;margin-top:6px;}
+  .review-stat .score span{font-size:15px;color:var(--ink-soft);font-weight:500;}
+  .review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .review-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    padding:18px 20px;
+  }
+  .review-card p{font-size:14px;line-height:1.6;color:var(--ink);margin:0 0 12px;}
+  .review-card .who{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-soft);}
+  .review-card .who b{color:var(--ink);font-weight:600;}
 
   /* LOCATION / CONTACT */
   .contact-wrap{
@@ -327,6 +392,11 @@
     .builds-grid{grid-template-columns:1fr;}
     .builds-photo{min-height:340px;}
     .builds-copy{padding:36px 26px;}
+    .gallery-strip{grid-template-columns:1fr;}
+    .review-grid{grid-template-columns:1fr;}
+    .review-stats{flex-direction:column;}
+    .review-stat{border-right:none;border-bottom:1px solid var(--line);}
+    .review-stat:last-child{border-bottom:none;}
     .why-grid{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
     .map-embed iframe{min-height:280px;}
@@ -355,6 +425,7 @@
       <a href="#services">Services</a>
       <a href="#builds">Custom Builds</a>
       <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
       <a href="#contact">Location</a>
     </div>
     <a class="btn btn-primary btn-nav" href="tel:+17028711881">Call 702-871-1881</a>
@@ -375,13 +446,13 @@
         </div>
         <div class="hero-stats">
           <div class="stat"><div class="num">30</div><div class="lab">Years in business</div></div>
-          <div class="stat"><div class="num">Same-Day</div><div class="lab">Appointments often available</div></div>
+          <div class="stat"><div class="num">9-5</div><div class="lab">Mon-Fri, walk-ins welcome</div></div>
           <div class="stat"><div class="num">All Brands</div><div class="lab">HP · Dell · Asus · Apple &amp; more</div></div>
         </div>
       </div>
       <div class="hero-photo-wrap">
         <div class="hero-photo">
-          <img src="images/custom-build.jpg" alt="Custom gaming PC build with RGB lighting, assembled by Vegas CompuDoc">
+          <img src="images/custom-build3.png" class="fit-contain" alt="Custom pyramid-frame open-air PC build with RGB light strips, assembled by Vegas CompuDoc">
           <div class="tag mono">COMPLETED BUILD</div>
         </div>
       </div>
@@ -428,8 +499,8 @@
       <div class="builds">
         <div class="builds-grid">
           <div class="builds-photo">
-            <div class="cell">
-              <img src="images/custom-build.jpg" alt="Custom gaming PC build with RGB lighting, open case, completed by Vegas CompuDoc">
+            <div class="cell fit-contain">
+              <img src="images/custom-build3.png" alt="Custom pyramid-frame open-air PC build with RGB light strips, completed by Vegas CompuDoc">
               <div class="tag">COMPLETED BUILD</div>
             </div>
             <div class="cell">
@@ -451,6 +522,17 @@
               <a class="btn btn-accent" href="tel:+17028711881">Ask About a Custom Build</a>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="gallery-strip">
+        <div class="gallery-card">
+          <div class="frame"><img src="images/custom-build3.png" alt="Completed pyramid-frame open-air PC build with RGB light strips"></div>
+          <div class="cap"><span class="name">Pyramid Open-Air Build</span><span class="status">Completed</span></div>
+        </div>
+        <div class="gallery-card">
+          <div class="frame"><img src="images/custom-build2.png" alt="Completed Thermaltake gaming PC with ring lighting"></div>
+          <div class="cap"><span class="name">Thermaltake Ring Build</span><span class="status">Completed</span></div>
         </div>
       </div>
     </div>
@@ -475,8 +557,43 @@
         </div>
         <div class="why-card">
           <div class="num mono">03</div>
-          <h3>Often same-day service</h3>
-          <p>By appointment, and many times we can see you the same day you call.</p>
+          <h3>Open Mon-Fri, 9am-5pm</h3>
+          <p>Walk in during business hours, or call ahead to make sure Gareth has time to look at it right away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews" style="padding-top:0;">
+    <div class="wrap">
+      <div class="services-head">
+        <div class="eyebrow">Reviews</div>
+        <h2>30 years of customers who keep coming back.</h2>
+      </div>
+
+      <div class="review-stats">
+        <div class="review-stat">
+          <div class="platform">Google Reviews</div>
+          <div class="score">4.9 <span>/ 5 · 185 reviews</span></div>
+        </div>
+        <div class="review-stat">
+          <div class="platform">Yelp Reviews</div>
+          <div class="score">4.3 <span>/ 5 · 89 reviews</span></div>
+        </div>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <p>Gareth diagnosed the problem fast and had the machine running better than before, at a fair price.</p>
+          <div class="who">ROBERT S. · YELP</div>
+        </div>
+        <div class="review-card">
+          <p>Second time bringing a gaming PC in, and it's always straightforward, honest pricing and solid work.</p>
+          <div class="who">SAMUEL M. · YELP</div>
+        </div>
+        <div class="review-card">
+          <p>Called around to a few shops, but Gareth was the one who actually took time to explain what was wrong.</p>
+          <div class="who">LILLIAN A. · GOOGLE</div>
         </div>
       </div>
     </div>
@@ -488,7 +605,7 @@
         <div class="contact-info">
           <div class="eyebrow">Visit or Call</div>
           <h2>Come by the shop.</h2>
-          <p class="sub">By appointment, many times we can see you the same day.</p>
+          <p class="sub">Mon-Fri, 9am-5pm. Closed Saturday and Sunday.</p>
 
           <div class="info-row">
             <div class="ic">LOC</div>
@@ -504,7 +621,7 @@
           </div>
           <div class="info-row">
             <div class="ic">HRS</div>
-            <div><div class="lab">Hours</div><div class="val">By appointment</div></div>
+            <div><div class="lab">Hours</div><div class="val">Mon-Fri, 9am-5pm</div></div>
           </div>
 
           <div class="contact-ctas">
